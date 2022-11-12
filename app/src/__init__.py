@@ -1,13 +1,30 @@
+""" Root of the backend code.
+"""
+from app.src.core import Core
 
-from .core import Core
-from ..config import settings
+from .models.downloads import create_download, \
+    downloads
 
-def main():
-    """ Main function.
+# Constants
+# path to the plugins
+PLUGINS_PATH  = "app.plugins."
+# // Constants
+
+
+def download_file(plugin=None):
+    """ Downloads a file using the provided plugin.
     """
-    settings.validators.validate_all()
+    if plugin is None:
+        plugin = "default"
 
-    plugins = settings.plugins
+    downloader = Core().get(plugin)
 
-    app = Core(plugins=plugins)
-    app.run()
+    file = downloader().download()
+
+    return create_download(file)
+
+
+def downloaded_files():
+    """ Returns the list of downloaded files.
+    """
+    return downloads()

@@ -1,4 +1,17 @@
-class Plugin:
-    def process(self):
-        print("This is the default plugin") 
+""" Default plugin.
 
+    Other plugins should follow this model.
+"""
+
+
+class Downloader:
+    """ Main class to deal with downloads.
+    """
+    def download(self):
+        """ Download a file.
+        """
+        print("download file ...")
+
+        return {"name": "test",
+                "date": "test",
+                "size": "test"}

@@ -1,4 +1,8 @@
+""" Core application.
+"""
 import importlib
+
+from app.config import settings
 
 # Constants
 # path to the plugins
@@ -11,21 +15,26 @@ class Core:
     """
     def __init__(self, plugins:list=None):
         if plugins is None:
-            plugins = []
+            plugins = settings.plugins
 
         plugins_path = PLUGINS_PATH
 
-        self._plugins = [importlib.import_module(plugins_path + plugin).Plugin
-                         for plugin in plugins]
+        self._plugins = {plugin: importlib.import_module(plugins_path + plugin).Downloader
+                         for plugin in plugins}
+
+    def get(self, name):
+        """ Returns the requested plugin.
+        """
+        return self._plugins[name]
 
     def run(self):
-        """ Run the application
+        """ Runs the application.
         """
         print("Starting ...")
 
         print("This is the core system")
 
-        for plugin in self._plugins:
+        for plugin in self._plugins.values():
             plugin().process()
 
         print("... done.")
