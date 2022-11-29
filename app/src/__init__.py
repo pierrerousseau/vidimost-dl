@@ -17,9 +17,9 @@ def download_file(plugin=None):
     if plugin is None:
         plugin = "default"
 
-    downloader = Core().get(plugin)
+    plugin = Core().get(plugin)
 
-    file = downloader().download()
+    file = plugin["downloader"](plugin["config"]).download()
 
     return create_download(file)
 

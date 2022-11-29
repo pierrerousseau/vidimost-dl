@@ -17,7 +17,8 @@ downloads = APIRouter(
 def json_encoder(obj):
     """ Temporary solution for json encoding of custom types.
 
-        FIXME: it is not clear to me how to globaly change the fastapi jsonencoder
+        FIXME: it is not clear to me how to globaly change the fastapi
+               jsonencoder
     """
     return json.loads(json.dumps(obj, default=str))
 

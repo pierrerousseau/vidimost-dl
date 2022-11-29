@@ -1,6 +1,6 @@
 """ Core application.
 """
-import importlib
+from importlib import import_module
 
 from app.config import settings
 
@@ -13,14 +13,14 @@ PLUGINS_PATH  = "app.plugins."
 class Core:
     """ Core of the application.
     """
-    def __init__(self, plugins:list=None):
-        if plugins is None:
-            plugins = settings.plugins
-
+    def __init__(self, plugins=settings.plugins):
         plugins_path = PLUGINS_PATH
 
-        self._plugins = {plugin: importlib.import_module(plugins_path + plugin).Downloader
-                         for plugin in plugins}
+        self._plugins = \
+            {plugin:
+                {"downloader": import_module(plugins_path + plugin).Downloader,
+                 "config": config}
+             for plugin, config in plugins.items()}
 
     def get(self, name):
         """ Returns the requested plugin.
@@ -35,6 +35,6 @@ class Core:
         print("This is the core system")
 
         for plugin in self._plugins.values():
-            plugin().process()
+            plugin["downloader"](plugin["config"]).process()
 
         print("... done.")

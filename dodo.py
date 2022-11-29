@@ -22,7 +22,8 @@ def task_install():
     """
     requirements_path = os.path.join(CONFIG_PATH, "requirements.txt")
 
-    return {'actions': ["pip --require-virtualenv install -r " + requirements_path],
+    return {'actions': ["pip --require-virtualenv install -r " +
+                        requirements_path],
             'verbosity': 2}
 
 
@@ -41,7 +42,8 @@ def task_lint():
     rc_path  = os.path.join(CONFIG_PATH, ".pylintrc")
     out_path = SRC_PATH
 
-    return {'actions': ["pylint --rcfile " + rc_path + " --output pylint.out " + out_path],
+    return {'actions': [f"pylint --rcfile {rc_path}" +
+                        f" --output pylint.out {out_path}"],
             'verbosity': 0}
 
 
@@ -69,5 +71,7 @@ def task_docker_build():
 def task_docker_run():
     """ Lance la version uvicorn de l'application.
     """
-    return {'actions': ["docker run -d --name vidimost-dl -p 80:80 vidimost-dl"],
+    name = "vidimost-dl"
+
+    return {'actions': [f"docker run -d --name {name} -p 80:80 {name}"],
             'verbosity': 2}
