@@ -47,13 +47,6 @@ def task_lint():
             'verbosity': 0}
 
 
-def task_launch():
-    """ Lance la version cli de l'application.
-    """
-    return {'actions': ["python main.py"],
-            'verbosity': 2}
-
-
 def task_uvicorn():
     """ Lance la version uvicorn de l'application.
     """
@@ -62,14 +55,14 @@ def task_uvicorn():
 
 
 def task_docker_build():
-    """ Lance la version uvicorn de l'application.
+    """ Construit les containers de la version docker de l'application.
     """
     return {'actions': ["docker build -t vidimost-dl app/"],
             'verbosity': 2}
 
 
 def task_docker_run():
-    """ Lance la version uvicorn de l'application.
+    """ Lance la version docker de l'application.
     """
     name = "vidimost-dl"
 

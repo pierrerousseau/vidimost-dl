@@ -26,6 +26,4 @@ Launch
 ======
 
 * doit list
-* doit launch
-* doit uvicorn
-* doit docker_run
+* once launched visit : http://localhost:8000/docs
