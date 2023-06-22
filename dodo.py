@@ -64,7 +64,15 @@ def task_docker_build():
 def task_docker_run():
     """ Lance la version docker de l'application.
     """
-    name = "vidimost-dl"
+    name    = "vidimost-dl"
+    network = "vidimost_vidimost-network"
 
-    return {'actions': [f"docker run -d --name {name} -p 80:80 {name}"],
+    return {'actions': [f"docker run -d --name {name} -p 80:80 --network={network} {name}"],
+            'verbosity': 2}
+
+
+def task_docker_compose():
+    """ Lance la version docker de l'application par compose.
+    """
+    return {'actions': ["docker compose -f docker-compose.yml up --build"],
             'verbosity': 2}

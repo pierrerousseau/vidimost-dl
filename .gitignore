@@ -19,6 +19,7 @@ pylint.out
 
 # Settings
 settings.yaml
+settings-docker.yaml
 
 # Ignore dynaconf secret files
 .secrets.*

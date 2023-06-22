@@ -1,0 +1,16 @@
+version: "3.7"
+
+services:
+  vidimost-dl:
+    build: ./app
+    networks:
+      - vidimost_vidimost-network
+    ports:
+      - 80:80
+    volumes:
+      - ./data:/data/dl
+      - ./app/settings/settings-docker.yaml:/code/app/settings/settings.yaml
+
+networks:
+  vidimost_vidimost-network:
+    external: true

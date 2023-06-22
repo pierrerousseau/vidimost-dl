@@ -7,6 +7,9 @@
 class Downloader:
     """ Main class to deal with downloads.
     """
+    def __init__(self, config):
+        self.config = config
+
     def download(self):
         """ Download a file.
         """
