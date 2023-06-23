@@ -1,4 +1,5 @@
-pylint==2.15.5
+pylint==2.17.4
+perflint==0.7.3
 
 dynaconf==3.1.11
 fastapi==0.85.1

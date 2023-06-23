@@ -4,7 +4,7 @@ import os
 
 # Constants
 CONFIG_PATH = "./app/settings"
-SRC_PATH    = "app.src"
+SRC_PATH    = "app"
 # // Constants
 
 
@@ -43,6 +43,7 @@ def task_lint():
     out_path = SRC_PATH
 
     return {'actions': [f"pylint --rcfile {rc_path}" +
+                        " --load-plugins=perflint " +
                         f" --output pylint.out {out_path}"],
             'verbosity': 0}
 
